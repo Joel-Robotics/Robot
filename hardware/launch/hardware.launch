@@ -1,3 +1,14 @@
 <launch>
-  <node name="serial_communication" pkg="hardware" type="serial_communication.py" output="screen"/>
+  <node name="motor_control" pkg="game" type="motor_control.py" output="screen"/>
+  <include file="$(find hardware)/launch/hardware.launch" />
+  <include file="$(find gamelogic)/launch/ball_finder.launch" />
+  <include file="$(find image)/launch/image.launch" />
+</launch>
+
+<launch>
+  <node pkg="robot_main" type="movement_controller.py"
+        name="movement_controller" output="screen" />
+  <include file="$(find robot_hardware)/launch/robot_hardware.launch" />
+  <include file="$(find robot_logic)/launch/ball_centerer.launch" />
+  <include file="$(find robot_image)/launch/robot_image.launch" />
 </launch>
